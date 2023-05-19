@@ -1,0 +1,116 @@
+package com.br.api.produtos.servico;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.br.api.produtos.modelo.ProdutoModelo;
+import com.br.api.produtos.modelo.RespostaModelo;
+import com.br.api.produtos.modelo.VendaModelo;
+import com.br.api.produtos.repositorio.ProdutoRepositorio;
+import com.br.api.produtos.repositorio.VendaRepositorio;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class ProdutoServico {
+
+    @Autowired
+    private ProdutoRepositorio pr;
+
+    @Autowired
+    private VendaRepositorio vr;
+
+    @Autowired
+    private RespostaModelo rm;
+
+    public Iterable<ProdutoModelo> listar() {
+        return pr.findAll();
+    }
+
+    public ResponseEntity<?> cadastrarAlterar(ProdutoModelo pm, String acao) {
+        // Implementação do método cadastrarAlterar atual
+        
+        if(pm.getNome().equals("")) {
+            rm.setMensagem("O nome do produto é obrigatório!");
+            return new ResponseEntity<RespostaModelo>(rm, HttpStatus.BAD_REQUEST);
+        } else {
+            if(acao.equals("cadastrar")) {
+                return new ResponseEntity<ProdutoModelo>(pr.save(pm), HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<ProdutoModelo>(pr.save(pm), HttpStatus.OK);
+            }
+        }
+    }
+
+    public ResponseEntity<RespostaModelo> remover(long codigo) {
+        // Implementação do método remover atual
+        
+        pr.deleteById(codigo);
+
+        rm.setMensagem("Produto removido com sucesso");
+        return new ResponseEntity<RespostaModelo>(rm, HttpStatus.OK);
+
+    }
+
+    public ResponseEntity<?> cadastrarVenda(List<Long> codigosProdutos, List<Integer> quantidades) {
+        // Verifica se a lista de códigos de produtos e quantidades têm o mesmo tamanho
+        if (codigosProdutos.size() != quantidades.size()) {
+            rm.setMensagem("A lista de códigos de produtos e quantidades deve ter o mesmo tamanho!");
+            return new ResponseEntity<RespostaModelo>(rm, HttpStatus.BAD_REQUEST);
+        }
+
+        // Verifica se todos os produtos existem no banco de dados
+        List<ProdutoModelo> produtos = new ArrayList<>();
+        for (int i = 0; i < codigosProdutos.size(); i++) {
+            long codigo = codigosProdutos.get(i);
+            ProdutoModelo produto = pr.findById(codigo).orElse(null);
+            if (produto == null) {
+                rm.setMensagem("Produto com código " + codigo + " não encontrado!");
+                return new ResponseEntity<RespostaModelo>(rm, HttpStatus.BAD_REQUEST);
+            }
+            produtos.add(produto);
+        }
+
+        // Verifica se há quantidade suficiente de cada produto
+        for (int i = 0; i < produtos.size(); i++) {
+            ProdutoModelo produto = produtos.get(i);
+            int quantidadeVendida = quantidades.get(i);
+            if (produto.getQuantidade() < quantidadeVendida) {
+                rm.setMensagem("Quantidade insuficiente do produto " + produto.getNome());
+                return new ResponseEntity<RespostaModelo>(rm, HttpStatus.BAD_REQUEST);
+            }
+        }
+
+        // Calcula o valor total da venda
+        double valorTotal = 0;
+        for (int i = 0; i < produtos.size(); i++) {
+            ProdutoModelo produto = produtos.get(i);
+            int quantidadeVendida = quantidades.get(i);
+            valorTotal += produto.getPreco() * quantidadeVendida;
+        }
+
+        // Atualiza a quantidade de produtos no banco de dados
+        for (int i = 0; i < produtos.size(); i++) {
+            ProdutoModelo produto = produtos.get(i);
+            int quantidadeVendida = quantidades.get(i);
+            int novaQuantidade = produto.getQuantidade() - quantidadeVendida;
+            produto.setQuantidade(novaQuantidade);
+            pr.save(produto);
+        }
+
+        // Cria a nova venda
+        VendaModelo venda = new VendaModelo();
+        venda.setProdutos(produtos);
+        venda.setQuantidades(quantidades);
+        venda.setValorTotal(valorTotal);
+        venda.setDataVenda(LocalDate.now());
+        vr.save(venda);
+
+        rm.setMensagem("Venda cadastrada com sucesso!");
+        return new ResponseEntity<RespostaModelo>(rm, HttpStatus.CREATED);
+    }
+}
