@@ -21,10 +21,10 @@ A API oferece os seguintes recursos principais:
 - Maven instalado (opcionalmente, você pode utilizar o Maven Wrapper fornecido no projeto)
 
 ## Instalação e execução
-- Clone este repositório: __`git clone https://github.com/seu-usuario/api-produtos.git__`
+- Clone este repositório: __`git clone https://github.com/seu-usuario/api-produtos.git`__
 - Navegue até o diretório do projeto: __`cd api-produtos__`
-- Execute o projeto usando o Maven Wrapper: __`./mvnw spring-boot:run (Linux/Mac) ou mvnw spring-boot:run__` (Windows)
-- A API estará disponível em: __`http://localhost:8080__`
+- Execute o projeto usando o Maven Wrapper: __`./mvnw spring-boot:run (Linux/Mac) ou mvnw spring-boot:run`__ (Windows)
+- A API estará disponível em: __`http://localhost:8080`__
 
 ## Endpoints
 - __`GET /listar`__: Retorna todos os produtos cadastrados.
