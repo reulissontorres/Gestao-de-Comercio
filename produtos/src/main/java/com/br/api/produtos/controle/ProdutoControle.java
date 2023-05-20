@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.api.produtos.modelo.ProdutoModelo;
 import com.br.api.produtos.modelo.RespostaModelo;
-// import com.br.api.produtos.modelo.VendaModelo;
 import com.br.api.produtos.servico.ProdutoServico;
 
 @RestController
@@ -44,14 +42,6 @@ public class ProdutoControle {
         return ps.cadastrarAlterar(pm, "cadastrar");
     }
 
-    /*
-     * @PostMapping("/vendas")
-     * public ResponseEntity<?> cadastrarVenda(@RequestParam("codigosProdutos")
-     * List<Long> codigosProdutos, @RequestParam("quantidades") List<Integer>
-     * quantidades) {
-     * return ps.cadastrarVenda(codigosProdutos, quantidades);
-     * }
-     */
     @PostMapping("/vendas")
     public ResponseEntity<?> cadastrarVenda(@RequestBody Map<String, List<Long>> venda) {
         List<Long> codigosProdutos = venda.get("codigosProdutos");
@@ -61,8 +51,6 @@ public class ProdutoControle {
         for (Long quantidade : vendaQuantidades) {
             quantidades.add(quantidade.intValue());
         }
-
-        // Restante do código para cadastrar a venda
 
         return ps.cadastrarVenda(codigosProdutos, quantidades);
     }
