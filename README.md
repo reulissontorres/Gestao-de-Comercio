@@ -1,12 +1,14 @@
 # API de Gerenciamento de Comércio para Mercearia
 Esta é uma API desenvolvida em Java com o framework Spring Boot, projetada para facilitar o gerenciamento de comércio de uma mercearia. Ela fornece endpoints para cadastrar, listar, atualizar e remover produtos, além de permitir o registro de vendas.
 
-## Funcionalidades
-- Listar todos os produtos
-- Cadastrar um novo produto
-- Alterar um produto existente
-- Remover um produto
-- Cadastrar uma venda de produtos
+## Recursos Principais
+A API oferece os seguintes recursos principais:
+
+- Cadastro de produtos: Permite cadastrar novos produtos, informando seu nome, preço, quantidade em estoque, entre outros detalhes relevantes.
+- Listagem de produtos: Fornece a capacidade de listar todos os produtos disponíveis na mercearia.
+- Atualização de produtos: Permite atualizar as informações de um produto existente, como preço, quantidade em estoque, entre outros.
+- Remoção de produtos: Permite remover um produto do sistema com base no seu código identificador único.
+- Registro de vendas: Possibilita o registro de vendas, informando os produtos vendidos e suas quantidades, calculando automaticamente o valor total da venda e atualizando o estoque dos produtos.
 
 ## Tecnologias utilizadas
 - Java
