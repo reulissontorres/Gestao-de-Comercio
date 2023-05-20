@@ -1,5 +1,5 @@
-# API de Produtos
-Esta é uma API de exemplo para gerenciar produtos usando o Spring Boot.
+# API de Gerenciamento de Comércio para Mercearia
+Esta é uma API desenvolvida em Java com o framework Spring Boot, projetada para facilitar o gerenciamento de comércio de uma mercearia. Ela fornece endpoints para cadastrar, listar, atualizar e remover produtos, além de permitir o registro de vendas.
 
 ## Funcionalidades
 - Listar todos os produtos
