@@ -22,7 +22,7 @@ A API oferece os seguintes recursos principais:
 
 ## Instalação e execução
 - Clone este repositório: __`git clone https://github.com/seu-usuario/api-produtos.git`__
-- Navegue até o diretório do projeto: __`cd api-produtos__`
+- Navegue até o diretório do projeto: __`cd api-produtos`__
 - Execute o projeto usando o Maven Wrapper: __`./mvnw spring-boot:run (Linux/Mac) ou mvnw spring-boot:run`__ (Windows)
 - A API estará disponível em: __`http://localhost:8080`__
 

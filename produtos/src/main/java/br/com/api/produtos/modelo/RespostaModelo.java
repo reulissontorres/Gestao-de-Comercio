@@ -1,4 +1,4 @@
-package com.br.api.produtos.modelo;
+package br.com.api.produtos.modelo;
 
 import org.springframework.stereotype.Component;
 

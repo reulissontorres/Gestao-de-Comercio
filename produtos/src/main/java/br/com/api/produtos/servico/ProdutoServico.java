@@ -1,15 +1,15 @@
-package com.br.api.produtos.servico;
+package br.com.api.produtos.servico;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.br.api.produtos.modelo.ProdutoModelo;
-import com.br.api.produtos.modelo.RespostaModelo;
-import com.br.api.produtos.modelo.VendaModelo;
-import com.br.api.produtos.repositorio.ProdutoRepositorio;
-import com.br.api.produtos.repositorio.VendaRepositorio;
+import br.com.api.produtos.modelo.ProdutoModelo;
+import br.com.api.produtos.modelo.RespostaModelo;
+import br.com.api.produtos.modelo.VendaModelo;
+import br.com.api.produtos.repositorio.ProdutoRepositorio;
+import br.com.api.produtos.repositorio.VendaRepositorio;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

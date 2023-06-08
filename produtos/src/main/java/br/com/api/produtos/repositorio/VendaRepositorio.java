@@ -1,8 +1,8 @@
-package com.br.api.produtos.repositorio;
+package br.com.api.produtos.repositorio;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.br.api.produtos.modelo.VendaModelo;
+import br.com.api.produtos.modelo.VendaModelo;
 
 public interface VendaRepositorio extends CrudRepository<VendaModelo, Long> {
 

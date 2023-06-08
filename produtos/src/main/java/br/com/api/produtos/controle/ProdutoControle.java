@@ -1,4 +1,4 @@
-package com.br.api.produtos.controle;
+package br.com.api.produtos.controle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.br.api.produtos.modelo.ProdutoModelo;
-import com.br.api.produtos.modelo.RespostaModelo;
-import com.br.api.produtos.servico.ProdutoServico;
+import br.com.api.produtos.modelo.ProdutoModelo;
+import br.com.api.produtos.modelo.RespostaModelo;
+import br.com.api.produtos.servico.ProdutoServico;
 
 @RestController
 // @CrossOrigin(origins = "http://localhost:3000")
