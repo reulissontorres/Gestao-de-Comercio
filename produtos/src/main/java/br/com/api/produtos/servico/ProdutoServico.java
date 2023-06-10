@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import br.com.api.produtos.modelo.ProdutoModelo;
 import br.com.api.produtos.modelo.RespostaModelo;
@@ -26,6 +29,17 @@ public class ProdutoServico {
 
     @Autowired
     private RespostaModelo rm;
+
+    public ResponseEntity<ProdutoModelo> obterPorCodigo(long codigo) {
+    ProdutoModelo produto = pr.findById(codigo).orElse(null);
+    
+    if (produto != null) {
+        return new ResponseEntity<ProdutoModelo>(produto, HttpStatus.OK);
+    } else {
+        return new ResponseEntity<ProdutoModelo>(HttpStatus.NOT_FOUND);
+    }
+}
+
 
     public Iterable<ProdutoModelo> listar() {
         return pr.findAll();

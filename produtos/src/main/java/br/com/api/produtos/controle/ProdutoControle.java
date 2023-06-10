@@ -27,12 +27,18 @@ public class ProdutoControle {
     @Autowired
     private ProdutoServico ps;
 
+    @GetMapping("/produtos/{codigo}")
+    public ResponseEntity<ProdutoModelo> obterPorCodigo(@PathVariable long codigo) {
+    return ps.obterPorCodigo(codigo);
+    }
+
+
     @DeleteMapping("/remover/{codigo}")
     public ResponseEntity<RespostaModelo> remover(@PathVariable long codigo) {
         return ps.remover(codigo);
     }
 
-    @PutMapping("/alterar")
+    @PutMapping("/alterar/{codigo}")
     public ResponseEntity<?> alterar(@RequestBody ProdutoModelo pm) {
         return ps.cadastrarAlterar(pm, "alterar");
     }
