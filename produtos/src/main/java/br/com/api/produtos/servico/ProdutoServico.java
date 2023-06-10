@@ -31,6 +31,10 @@ public class ProdutoServico {
         return pr.findAll();
     }
 
+    public Iterable<VendaModelo> listarVendas() {
+        return vr.findAll();
+    }
+
     public ResponseEntity<?> cadastrarAlterar(ProdutoModelo pm, String acao) {
         // Implementação do método cadastrarAlterar atual
         

@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.produtos.modelo.ProdutoModelo;
 import br.com.api.produtos.modelo.RespostaModelo;
+import br.com.api.produtos.modelo.VendaModelo;
 import br.com.api.produtos.servico.ProdutoServico;
 
 @RestController
-// @CrossOrigin(origins = "http://localhost:3000")
 @CrossOrigin(origins = "*")
 public class ProdutoControle {
 
@@ -58,6 +58,11 @@ public class ProdutoControle {
     @GetMapping("/listar")
     public Iterable<ProdutoModelo> listar() {
         return ps.listar();
+    }
+
+    @GetMapping("/listar-vendas")
+    public Iterable<VendaModelo> listarVendas() {
+        return ps.listarVendas();
     }
 
     @GetMapping("/")
