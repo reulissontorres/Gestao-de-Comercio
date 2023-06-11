@@ -27,7 +27,7 @@ public class ProdutoControle {
     @Autowired
     private ProdutoServico ps;
 
-    @GetMapping("/produtos/{codigo}")
+    @GetMapping("/alterar/{codigo}")
     public ResponseEntity<ProdutoModelo> obterPorCodigo(@PathVariable long codigo) {
     return ps.obterPorCodigo(codigo);
     }
