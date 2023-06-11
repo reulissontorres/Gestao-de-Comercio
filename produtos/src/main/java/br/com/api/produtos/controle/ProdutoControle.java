@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.api.produtos.modelo.ProdutoModelo;
-import br.com.api.produtos.modelo.RespostaModelo;
-import br.com.api.produtos.modelo.VendaModelo;
+import br.com.api.produtos.modelo.*;
 import br.com.api.produtos.servico.ProdutoServico;
 
 @RestController

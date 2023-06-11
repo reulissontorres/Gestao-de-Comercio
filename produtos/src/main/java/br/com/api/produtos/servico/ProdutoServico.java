@@ -4,15 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
-import br.com.api.produtos.modelo.ProdutoModelo;
-import br.com.api.produtos.modelo.RespostaModelo;
-import br.com.api.produtos.modelo.VendaModelo;
-import br.com.api.produtos.repositorio.ProdutoRepositorio;
-import br.com.api.produtos.repositorio.VendaRepositorio;
+import br.com.api.produtos.modelo.*;
+import br.com.api.produtos.repositorio.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
