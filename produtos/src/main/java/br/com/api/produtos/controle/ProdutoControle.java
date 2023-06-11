@@ -1,9 +1,5 @@
 package br.com.api.produtos.controle;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.api.produtos.modelo.*;
 import br.com.api.produtos.servico.ProdutoServico;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+
 @RestController
 @CrossOrigin(origins = "*")
 public class ProdutoControle {
@@ -27,9 +28,8 @@ public class ProdutoControle {
 
     @GetMapping("/alterar/{codigo}")
     public ResponseEntity<ProdutoModelo> obterPorCodigo(@PathVariable long codigo) {
-    return ps.obterPorCodigo(codigo);
+        return ps.obterPorCodigo(codigo);
     }
-
 
     @DeleteMapping("/remover/{codigo}")
     public ResponseEntity<RespostaModelo> remover(@PathVariable long codigo) {
@@ -71,7 +71,7 @@ public class ProdutoControle {
 
     @GetMapping("/")
     public String rota() {
-        return "API de produtos funcionando!";
+        return "Sistema Mercadinho funcionando!";
     }
 
 }

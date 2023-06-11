@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.List;
 
 @Entity
 @Table(name = "produtos")
@@ -18,11 +18,11 @@ public class ProdutoModelo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
-    
+
     private String nome;
     private double preco;
     private int quantidade;
-    
+
     @JsonIgnore
     @ManyToMany(mappedBy = "produtos")
     private List<VendaModelo> vendas;
