@@ -59,14 +59,28 @@ public class ProdutoServico {
     }
 
     public ResponseEntity<RespostaModelo> remover(long codigo) {
-        // Implementação do método remover atual
-        
-        pr.deleteById(codigo);
+    ProdutoModelo produto = pr.findById(codigo).orElse(null);
 
-        rm.setMensagem("Produto removido com sucesso");
-        return new ResponseEntity<RespostaModelo>(rm, HttpStatus.OK);
-
+    if (produto == null) {
+        rm.setMensagem("Produto com código " + codigo + " não encontrado!");
+        return new ResponseEntity<RespostaModelo>(rm, HttpStatus.NOT_FOUND);
     }
+
+    // Verifica se o produto está presente em alguma venda
+    Iterable<VendaModelo> vendas = vr.findAll();
+    for (VendaModelo venda : vendas) {
+        List<ProdutoModelo> produtos = venda.getProdutos();
+        if (produtos.contains(produto)) {
+            rm.setMensagem("O produto está presente em uma venda e não pode ser removido!");
+            return new ResponseEntity<RespostaModelo>(rm, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    pr.deleteById(codigo);
+
+    rm.setMensagem("Produto removido com sucesso");
+    return new ResponseEntity<RespostaModelo>(rm, HttpStatus.OK);
+}
 
     public ResponseEntity<?> cadastrarVenda(List<Long> codigosProdutos, List<Integer> quantidades) {
         // Verifica se a lista de códigos de produtos e quantidades têm o mesmo tamanho
